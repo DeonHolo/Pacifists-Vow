@@ -1,0 +1,71 @@
+// =====================================================================
+// Pacifist's Vow - Non-Lethal Attacks Overhaul
+//
+// Standalone merged behavior:
+// - Replaces the vanilla NonLethal toggle with a 30m aura.
+// - The aura marks valid nearby targets with PACIFISTS_VOW_AURA_INRANGE.
+// - Lua watches marked targets for HP <= 0, sets HP to 1, and applies
+//   KNOCKED_OUT directly.
+// - No DownedStatus chain is used, avoiding DOT-driven downed flicker.
+// - NonLethal passive omits vanilla ToggleForParty so each character toggles
+//   their own aura (party-wide sync hurts performance and control).
+// =====================================================================
+
+new entry "PACIFISTS_VOW_XP_STATUS"
+type "StatusData"
+data "StatusType" "BOOST"
+data "StatusPropertyFlags" "GiveExp;DisableCombatlog;DisableOverhead;DisablePortraitIndicator"
+
+// =====================================================================
+// Vanilla override
+// =====================================================================
+
+new entry "NonLethal"
+type "PassiveData"
+using "NonLethal"
+// Vanilla includes ToggleForParty — drop it so each character has their own toggle/aura.
+data "Properties" "IsToggled;ToggledDefaultAddToHotbar"
+data "Icon" "PassiveFeature_Legendary_PacifyingAura"
+// Toggle Pacifist's Vow Aura
+data "DisplayName" "h123c8d84gf588g493cgbb81g5d56b22cfb85;1"
+// Sworn to spare, never to slay. Characters within [1] of you are <LSTag Type="Status" Tooltip="KNOCKED_OUT">Knocked Out</LSTag> instead of dying.
+data "Description" "h5ecc5c10g2a32g4285gaf85g58fc9f141683;1"
+// Doesn't affect undead, constructs, inanimate objects, dead creatures, or anything immune to being knocked out.
+data "ExtraDescription" "h12272063gc28bg4333gb356gf27f4def5dab;1"
+data "DescriptionParams" "Distance(30)"
+data "Boosts" "IF(Character() and not Self() and not Dead() and not Summon() and not HasAnyTags({'UNDEAD', 'CONSTRUCT', 'CREATURE_SPORE_SERVANT'}) and not HasAnyStatus({'SG_Polymorph','HAG_DISGUISE','HAG_DISGUISE_PIG','HAG_DISGUISE_SHEEP'}) and not IsImmuneToStatus('KNOCKED_OUT') and IsAttack() or IsSpell()):NonLethal()"
+data "ToggleOffFunctors" "RemoveStatus(NON_LETHAL)"
+
+new entry "NON_LETHAL"
+type "StatusData"
+data "StatusType" "BOOST"
+using "NON_LETHAL"
+// Pacifist's Vow Aura
+data "DisplayName" "h03ef0c32g5934g4655g966eg6255a06f4e45;1"
+// Your oath stays the killing blow. Characters within [1] of you are <LSTag Type="Status" Tooltip="KNOCKED_OUT">Knocked Out</LSTag> instead of dying.<br><br>Doesn't affect undead, constructs, inanimate objects, dead creatures, or anything immune to being knocked out.
+data "Description" "hd4ce9339g76ecg4f39g9f3bg52f0a635a768;1"
+data "DescriptionParams" "Distance(30)"
+// Vanilla atlas MapKey from LegendaryAction_LOW_GithyankiProdigy_PacifyingAura.
+data "Icon" "PassiveFeature_Legendary_PacifyingAura"
+data "StatusPropertyFlags" "DisableCombatlog;DisableOverhead;IgnoreResting;ApplyToDead"
+data "AuraRadius" "30"
+data "AuraStatuses" "TARGET:IF(Character() and not Party() and not Dead() and not Summon() and not HasAnyTags({'UNDEAD', 'CONSTRUCT', 'CREATURE_SPORE_SERVANT', 'INANIMATE'}) and not HasAnyStatus({'SG_Polymorph','HAG_DISGUISE','HAG_DISGUISE_PIG','HAG_DISGUISE_SHEEP'}) and not IsImmuneToStatus('KNOCKED_OUT')):ApplyStatus(PACIFISTS_VOW_AURA_INRANGE)"
+data "AuraFlags" "IgnoreItems"
+
+// =====================================================================
+// Aura marker
+// =====================================================================
+
+new entry "PACIFISTS_VOW_AURA_INRANGE"
+type "StatusData"
+data "StatusType" "BOOST"
+// Bound by Pacifist's Vow
+data "DisplayName" "h7c3078f2g2fccg45b6ga8e7g9364c88e831b;1"
+// <LSTag Type="Status" Tooltip="NON_LETHAL">Pacifist's Vow</LSTag> holds back the killing blow. This character will be <LSTag Type="Status" Tooltip="KNOCKED_OUT">Knocked Out</LSTag> instead of dying.
+data "Description" "hcd2afcadg363eg4205gbc73g203f3dd60a80;1"
+// Same vanilla atlas MapKey as NON_LETHAL.
+data "Icon" "PassiveFeature_Legendary_PacifyingAura"
+data "StackId" "PACIFISTS_VOW_AURA_INRANGE"
+data "StackType" "Ignore"
+data "Instant" "Yes"
+data "StatusPropertyFlags" "DisableCombatlog;DisableOverhead"

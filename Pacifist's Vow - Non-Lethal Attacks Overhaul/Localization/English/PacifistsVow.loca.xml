@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentList>
+	<content contentuid="h123c8d84gf588g493cgbb81g5d56b22cfb85" version="1">Toggle Pacifist's Vow Aura</content>
+	<content contentuid="h5ecc5c10g2a32g4285gaf85g58fc9f141683" version="1">Sworn to spare, never to slay. Characters within [1] of you are &lt;LSTag Type="Status" Tooltip="KNOCKED_OUT"&gt;Knocked Out&lt;/LSTag&gt; instead of dying.</content>
+	<content contentuid="h12272063gc28bg4333gb356gf27f4def5dab" version="1">Doesn't affect undead, constructs, inanimate objects, dead creatures, or anything immune to being knocked out.</content>
+	<content contentuid="h03ef0c32g5934g4655g966eg6255a06f4e45" version="1">Pacifist's Vow Aura</content>
+	<content contentuid="hd4ce9339g76ecg4f39g9f3bg52f0a635a768" version="1">Your oath stays the killing blow. Characters within [1] of you are &lt;LSTag Type="Status" Tooltip="KNOCKED_OUT"&gt;Knocked Out&lt;/LSTag&gt; instead of dying.&lt;br&gt;&lt;br&gt;Doesn't affect undead, constructs, inanimate objects, dead creatures, or anything immune to being knocked out.</content>
+	<content contentuid="h7c3078f2g2fccg45b6ga8e7g9364c88e831b" version="1">Bound by Pacifist's Vow</content>
+	<content contentuid="hcd2afcadg363eg4205gbc73g203f3dd60a80" version="1">&lt;LSTag Type="Status" Tooltip="NON_LETHAL"&gt;Pacifist's Vow&lt;/LSTag&gt; holds back the killing blow. This character will be &lt;LSTag Type="Status" Tooltip="KNOCKED_OUT"&gt;Knocked Out&lt;/LSTag&gt; instead of dying.</content>
+</contentList>

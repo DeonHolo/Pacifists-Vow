@@ -1,0 +1,14 @@
+# Packed mod artifacts (attach to GitHub Releases instead of committing)
+*.pak
+*.zip
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor junk
+.vscode/
+.idea/
+*.swp
+*.bak
