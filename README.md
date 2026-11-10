@@ -2,6 +2,10 @@
 
 A toggleable 30m non-lethal aura for Baldur's Gate 3 that turns every killing blow inside its range into a clean Knock Out. Works with melee, ranged, and spells.
 
+**[Download on Nexus Mods](https://www.nexusmods.com/baldursgate3/mods/22813)**
+
+[![Pacifist's Vow cover art with the golden aura icon](assets/pacifists-vow-cover.webp)](https://www.nexusmods.com/baldursgate3/mods/22813)
+
 This mod merges two existing mods into a standalone overhaul:
 
 - **Bonk Enhanced** by BaldursGoonsack — 30m aura model, per-character toggle, eligibility filters.
@@ -18,6 +22,17 @@ This mod merges two existing mods into a standalone overhaul:
 - Toggle it off and combat returns to fully lethal as normal.
 - Vanilla restrictions preserved (undead, constructs, spore servants, inanimate objects, dead creatures, anything immune to KO). Quest-critical NPCs stay on the standard restriction list.
 
+<details>
+<summary>See the aura and status tooltips in game</summary>
+
+![Toggle Pacifist's Vow Aura passive tooltip](assets/toggle-aura.webp)
+
+![Pacifist's Vow Aura condition tooltip](assets/aura-condition.webp)
+
+![Bound by Pacifist's Vow condition tooltip](assets/bound-condition.webp)
+
+</details>
+
 ## Versions
 
 Two editions are included. Install only one at a time — they share a UUID and act as drop-in replacements for each other.
@@ -31,7 +46,7 @@ Two editions are included. Install only one at a time — they share a UUID and 
 
 ## Installation
 
-1. Pack the chosen edition's folder into a `.pak` using [BG3 Modders Multitool](https://github.com/ShinyHobo/BG3-Modders-Multitool) or LSLib.
+1. Download your chosen edition as a `.pak` from [Nexus Mods](https://www.nexusmods.com/baldursgate3/mods/22813?tab=files). To build from this repository, pack the edition's folder with [BG3 Modders Multitool](https://github.com/ShinyHobo/BG3-Modders-Multitool) or LSLib.
 2. Drop the `.pak` into `%LOCALAPPDATA%\Larian Studios\Baldur's Gate 3\Mods\`, or install through BG3 Mod Manager / Vortex.
 3. Load Pacifist's Vow below any other mod that modifies the `NonLethal` passive or `NON_LETHAL` status.
 
